@@ -17,18 +17,26 @@ public class LojaController {
 
 	@Autowired
 	private LojaDAO dao;
-	
+
 	@GetMapping("/produtos")
-    public ResponseEntity<List<Loja>> getAll(){
-    	List<Loja> lojinha = (List<Loja>) dao.findAll();
-    	if(lojinha.size() == 0)
-    		return ResponseEntity.status(404).build();
-    	else
-    		return ResponseEntity.ok(lojinha);
-    }
-	
+	public ResponseEntity<List<Loja>> getAll() {
+		List<Loja> lojinha = (List<Loja>) dao.findAll();
+		if (lojinha.size() == 0)
+			return ResponseEntity.status(404).build();
+		else
+			return ResponseEntity.ok(lojinha);
+	}
+
 	@GetMapping("/produtos/{id}")
-	public Optional<Loja> findById(@PathVariable(value = "id")int id){
-		return dao.findById(id);
+	public ResponseEntity<Loja> getUsuario(@PathVariable int id){
+		
+		Loja resposta = dao.findById(id).orElse(null);
+		
+		if(resposta == null) {
+			return ResponseEntity.status(404).build();
+		}
+		
+		return ResponseEntity.ok(resposta);
+		
 	}
 }
