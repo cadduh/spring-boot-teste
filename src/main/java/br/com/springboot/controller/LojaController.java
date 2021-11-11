@@ -3,10 +3,13 @@ package br.com.springboot.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.boot.model.source.internal.hbm.RootEntitySourceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.springboot.beans.Loja;
@@ -38,5 +41,17 @@ public class LojaController {
 		
 		return ResponseEntity.ok(resposta);
 		
+	}
+	
+	@PostMapping("/novoprodutos")
+	public ResponseEntity<Loja> addProdutos(@RequestBody Loja objeto){
+		try {
+			dao.save(objeto);
+			return ResponseEntity.ok(objeto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(404).build();
+			// TODO: handle exception
+		}
 	}
 }
