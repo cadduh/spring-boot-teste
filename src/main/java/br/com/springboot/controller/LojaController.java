@@ -43,6 +43,19 @@ public class LojaController {
 		
 	}
 	
+	@PostMapping("/produtos/login")
+	public ResponseEntity<Loja> login(@RequestBody Loja objeto){
+		
+		Loja resposta = dao.findByNomeAndCodigo(objeto.getNome(), objeto.getCodigo());
+		
+		if(resposta == null) {
+			return ResponseEntity.status(404).build();
+		}
+		
+		return ResponseEntity.ok(resposta);
+		
+	}
+	
 	@PostMapping("/novoprodutos")
 	public ResponseEntity<Loja> addProdutos(@RequestBody Loja objeto){
 		try {
