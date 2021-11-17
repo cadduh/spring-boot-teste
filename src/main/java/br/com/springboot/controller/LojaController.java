@@ -6,11 +6,16 @@ import java.util.Optional;
 import org.hibernate.boot.model.source.internal.hbm.RootEntitySourceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.springboot.beans.Loja;
 import br.com.springboot.dao.LojaDAO;
@@ -21,6 +26,7 @@ public class LojaController {
 	@Autowired
 	private LojaDAO dao;
 
+	//Lista todo os produto do banco de dados
 	@GetMapping("/produtos")
 	public ResponseEntity<List<Loja>> getAll() {
 		List<Loja> lojinha = (List<Loja>) dao.findAll();
@@ -30,6 +36,7 @@ public class LojaController {
 			return ResponseEntity.ok(lojinha);
 	}
 
+	//lista um produto especifico
 	@GetMapping("/produtos/{id}")
 	public ResponseEntity<Loja> getUsuario(@PathVariable int id){
 		
@@ -43,6 +50,28 @@ public class LojaController {
 		
 	}
 	
+	//Tela de cadastro
+	@RequestMapping("/")
+	public ModelAndView index() {
+		return new ModelAndView("index");
+	}
+	
+	//Tela de login
+	@RequestMapping("/login")
+	public ModelAndView login(@RequestParam(name = "qnt", defaultValue = "0") int qnt, Model model) {
+		model.addAttribute(qnt);
+		return new ModelAndView("login");
+	}
+	
+	//TESTE
+    @GetMapping("/lav")
+    public String home(ModelMap model) {
+        model.addAttribute("nomeDoAtributo", "Treinaweb");
+
+        return "login";
+    }
+
+    //login
 	@PostMapping("/produtos/login")
 	public ResponseEntity<Loja> login(@RequestBody Loja objeto){
 		
@@ -56,6 +85,7 @@ public class LojaController {
 		
 	}
 	
+	//Criar novo produto
 	@PostMapping("/novoprodutos")
 	public ResponseEntity<Loja> addProdutos(@RequestBody Loja objeto){
 		try {

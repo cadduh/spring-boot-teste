@@ -1,0 +1,182 @@
+<!-- Desenvolvido por Carlos Eduardo e Michel Pereira | 4SIT - 2021.2 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Microsoft - Cadastre-se </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script type= "text/javascript" src="C:/Users/fe/Desktop/usuario.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+        <script type= "text/javascript" src="./js/usuario.js"></script>
+    </head>
+    <style>
+      .imagem {width: 60%; height: 60%; }
+      .agrupar{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+      }
+      html, body {
+          overflow: hidden;
+        }
+      body{
+        background-image:url('images/R.jpg');
+        background-size: auto auto;
+        background-repeat:unset;
+        background-clip: padding-box;
+      }
+      .espaco{
+        float: right; width: 10%; height: 10%; padding: 9px; 
+      }
+      .whiteSpace{
+        float: left; width: 30%; height: auto; padding: 21em; 
+        background-color: rgba(255, 255, 255, 0.624);
+      }
+     @keyframes move {
+        0%   {right:0px; top:0px;}
+        25%  { right:200px; top:0px;}
+        50%  { right:200px; top:200px;}
+        75%  { right:0px; top:200px;}
+       100% { right:0px; top:0px;}
+     }
+      .img{
+        float: left; width: 8%; height: auto; padding: 24em; 
+         position: relative;
+        animation-name: move;
+        animation-duration: 5s;
+        background-image:url('images/at.png');
+        background-size: auto auto;
+        orientation: landscape;
+        overflow: visible;
+      }
+      .moldura{
+       float: right; width: auto; height: auto; margin: 20px; padding: 20px; background-color: #ffffff; border: 10px solid #dcdcdc; 
+      }
+      .navbar{
+        display: flex; float: top; width: auto; height: 8ch; margin: auto; padding: 20px; background-color: #ffffff; 
+      }
+
+      .preload{
+        position: fixed;
+        z-index:99999;
+        top:0; left:0;
+        width:100%; height:100%;
+        opacity:1;
+        background-color:#000;
+        background-size: 160ch 90ch;
+        background-image:url('images/giphy.gif');
+        background-position:50% 50%;
+        background-repeat:no-repeat;
+       }
+    #directionB{
+        float: right;
+    }
+    #directionA{
+      float: left;
+      flex-direction: column;
+    }
+    </style>
+
+    <script>
+
+    window.onload = function(){
+        var div = document.getElementById('preload');
+        preload(div, 50);
+        };
+
+    function preload(el, interval){
+    var op =1600;
+    var timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            el.style.display = 'none';
+            el.className = '';
+        }
+        el.style.opacity = op;
+        op -= op * 0.1;
+    }, interval);
+    let img;
+}
+    </script>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        
+        <div id="preload" class="preload"></div>
+        <nav class="navbar">
+          <div class="col">
+            <div class="directionA">
+              
+              <h6 class="col-22"><img src="./images/logoMicrosoftMini.png">ㅤSalve o seu produto no site mais seguro do mundo!<h6>
+            </div>
+          </div>
+          <div class="col">
+           <a target="_blank" href="https://www.microsoft.com/pt-br">
+             <button class="btn" id="directionB" type="button"><p>Site Oficial</p></button>
+          </a>
+          </div>
+        </nav>
+        <br>
+        <div class="espaco"></div>
+        <form method="post">
+          <div class="moldura">
+            
+            <div class="agrupar">
+              <img src="./images/logoMicrosoft.png" class="imagem">
+            </div>
+              <div class="row">
+                  <div class="col-12">
+                      <h4 style="text-align: center;">Cadastre o seu produto</h3>
+                  </div>
+              </div>
+              <br>
+              <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Nome</span>
+                  </div>
+                  <input id= "txtNome" type="name" class="form-control" placeholder="Digite o nome do produto" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+  
+                <br>
+  
+               <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Código</span>
+                  </div>
+                  <input id= "txtCod" type="tel" class="form-control" placeholder="Digite o código do produto" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+  
+                <br>
+  
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Quantidade</span>
+                  </div>
+                  <input id= "txtQnt" type="number" class="form-control" placeholder="Insira a quantidade" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+  
+                <br>
+  
+                <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">Valor</span>
+                  </div>
+                  <input id= "txtValor" type="number" class="form-control" placeholder="Insira o valor" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+                
+                <br><br>
+                <center> <button onclick="logar()" type="button" class="btn btn-primary">Cadastrar</button></center>
+  
+              </div>
+        </form>
+
+        <div class="img"></div>
+        <br>
+      
+       
+    </body>
+</html>
