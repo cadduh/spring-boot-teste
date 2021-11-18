@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.hibernate.boot.model.source.internal.hbm.RootEntitySourceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.springboot.beans.Loja;
 import br.com.springboot.dao.LojaDAO;
 
-@RestController
+@Controller
 public class LojaController {
 
 	@Autowired
@@ -34,6 +35,21 @@ public class LojaController {
 			return ResponseEntity.status(404).build();
 		else
 			return ResponseEntity.ok(lojinha);
+	}
+
+	@GetMapping("/login")
+	public String home() {
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<Loja> getAllByNomeAndCodigo(@RequestBody Loja loja) {
+		System.out.println(loja);
+		Loja resposta = dao.findByNomeAndCodigo(loja.getNome(), loja.getCodigo());
+
+//		if(resposta == null) { return ResponseEntity.status(404).build();}
+		System.out.println(resposta);
+		return ResponseEntity.ok(resposta);
 	}
 
 	//lista um produto especifico
@@ -57,26 +73,12 @@ public class LojaController {
 	}
 	
 	//Tela de login
-	@RequestMapping("/login")
-	public ModelAndView login(@RequestParam(name = "qnt", defaultValue = "0") int qnt, Model model) {
-		model.addAttribute(qnt);
-		return new ModelAndView("login");
-	}
-	
 	//TESTE
-    @GetMapping("/lav")
-    public String home(ModelMap model) {
-        model.addAttribute("nomeDoAtributo", "Treinaweb");
-
-        return "login";
-    }
 
     //login
 	@PostMapping("/produtos/login")
 	public ResponseEntity<Loja> login(@RequestBody Loja objeto){
-		
 		Loja resposta = dao.findByNomeAndCodigo(objeto.getNome(), objeto.getCodigo());
-		
 		if(resposta == null) {
 			return ResponseEntity.status(404).build();
 		}
