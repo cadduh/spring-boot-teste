@@ -99,4 +99,20 @@ public class LojaController {
 			// TODO: handle exception
 		}
 	}
+	
+	@PostMapping("/deletarprodutos")
+	public ResponseEntity<Loja> deletarProdutos(@RequestBody Loja objeto){
+		Loja resposta = dao.findByNomeAndCodigo(objeto.getNome(), objeto.getCodigo());
+		if(resposta == null) {
+			return ResponseEntity.status(404).build();
+		}
+		try {
+			dao.delete(resposta);
+			return ResponseEntity.ok(resposta);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(404).build();
+			// TODO: handle exception
+		}
+	}
 }
