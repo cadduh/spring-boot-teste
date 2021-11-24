@@ -69,7 +69,7 @@ public class LojaController {
 	//Tela de cadastro
 	@RequestMapping("/")
 	public ModelAndView index() {
-		return new ModelAndView("index");
+		return new ModelAndView("homepage");
 	}
 	
 	//Tela de login

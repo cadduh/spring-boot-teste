@@ -1,4 +1,4 @@
-function logar(){
+function createUser(){
     var objeto = {
         "nome" : document.getElementById("txtNome").value,
         "codigo" : document.getElementById("txtCod").value,
