@@ -26,7 +26,7 @@ function deletar(){
 		    document.querySelector('input#txtCod').value= ""
 			document.querySelector('input#txtQnt').value= ""
 		    document.querySelector('input#txtValor').value= ""
-            window.alert("Login Realizado com sucesso! ");
+            window.alert("Excluído com sucesso! ");
         })
         .catch(err => {
             window.alert("Deu ruim");

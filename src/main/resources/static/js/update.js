@@ -21,7 +21,7 @@ function update(){
         .then(res => {
             localStorage.setItem("logado",JSON.stringify(res));
             document.querySelector("#modal").classList.toggle("hide");
-            window.alert("Login Realizado com sucesso! ");
+            window.alert("Atualizado com sucesso! ");
         })
         .catch(err => {
             window.alert("Deu ruim");
