@@ -17,6 +17,7 @@ function logar(){
         .then(res => {
             localStorage.setItem("logado",JSON.stringify(res));
             document.querySelector("#modal").classList.toggle("hide");
+			document.querySelector('input#txtId').defaultValue= res.id
 			document.querySelector('input#txtQnt').defaultValue= res.quantidade
 		    document.querySelector('input#txtValor').defaultValue= res.valor
             window.alert("Login Realizado com sucesso! ");

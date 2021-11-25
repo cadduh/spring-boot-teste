@@ -11,6 +11,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
         <script type= "text/javascript" src="./js/login.js"></script>
         <script type= "text/javascript" src="./js/excluir.js"></script>
+        <script type= "text/javascript" src="./js/update.js"></script>
     </head>
     <style>
       .imagem {width: 60%; height: 60%; }
@@ -141,6 +142,15 @@
               <br>
               <div class="input-group flex-nowrap">
                   <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping">ID</span>
+                  </div>
+                  <input id= "txtId" type="name" class="form-control" placeholder="Digite o nome do produto" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+                <br>
+              
+              
+              <div class="input-group flex-nowrap">
+                  <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping">Nome</span>
                   </div>
                   <input id= "txtNome" type="name" class="form-control" placeholder="Digite o nome do produto" aria-label="Username" aria-describedby="addon-wrapping">
@@ -173,7 +183,6 @@
 	                  <input id= "txtValor" type="number" class="form-control" placeholder="Insira o valor" aria-label="Username" aria-describedby="addon-wrapping">
 	                </div>
 	            </div>
-                <br><br>
                 <center>
                 	<button onclick="logar()" type="button" class="btn btn-primary">Login</button>
                     <button onclick="deletar()" type="button" class="btn btn-warning">Excluir</button>

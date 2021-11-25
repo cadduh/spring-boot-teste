@@ -27,8 +27,29 @@ public class LojaController {
 	@Autowired
 	private LojaDAO dao;
 
+	//HomePage
+	@RequestMapping("/")
+	public ModelAndView index() {
+		return new ModelAndView("homepage");
+	}
+	
+	//HomePage
+	@RequestMapping("/createproduto")
+	public ModelAndView createProduto() {
+		return new ModelAndView("index");
+	}
+	
+	//Tabela 
+	@RequestMapping("/viewtabela")
+	public ModelAndView verTabela(Model model) {
+		List<Loja> lojinha = (List<Loja>) dao.findAll();
+		System.out.println(lojinha);
+		model.addAttribute(lojinha);
+		return new ModelAndView("Tabela");
+	}
+	
 	//Lista todo os produto do banco de dados
-	@GetMapping("/produtos")
+	@PostMapping("/viewtabela1")
 	public ResponseEntity<List<Loja>> getAll() {
 		List<Loja> lojinha = (List<Loja>) dao.findAll();
 		if (lojinha.size() == 0)
@@ -66,14 +87,6 @@ public class LojaController {
 		
 	}
 	
-	//Tela de cadastro
-	@RequestMapping("/")
-	public ModelAndView index() {
-		return new ModelAndView("homepage");
-	}
-	
-	//Tela de login
-	//TESTE
 
     //login
 	@PostMapping("/produtos/login")
